@@ -16,7 +16,7 @@ const Login = () => {
         style={styles.input}
         onChangeText={onChangeNumber}
         value={number}
-        placeholder="One Time Password"
+        placeholder="One-Time Password"
         keyboardType="numeric"
       />
     </SafeAreaView>
