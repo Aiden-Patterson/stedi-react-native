@@ -7,6 +7,7 @@ const Login = () => {
   const [number, onChangeNumber] = React.useState(null);
 
   return (
+    
     <SafeAreaView>
       <TextInput
         style={styles.input}
@@ -24,38 +25,83 @@ const Login = () => {
   );
 };
 
+
+
+
+function onetimepassword(){
+  const [text, onChangeText] = React.useState("Phone Number");
+  const [number, onChangeNumber] = React.useState(null);
+
+  return (
+    <SafeAreaView>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={number} 
+        placeholder="Phone Number"/>
+        
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="One-Time Password"
+        keyboardType="numeric" />
+
+        
+    </SafeAreaView>
+  );
+}
+
+*/
 export default function Login(props) {
+  const [text, onChangeText] = React.useState("Phone Number");
+  const [number, onChangeNumber] = React.useState(null);
   return (
     <View>
-      <Text>This is the Login Screen</Text>
-      
-      <Button title="log in" onPress={()=>props.setUserLoggedIn(true)}></Button>
+      <Text style={styles.login}>Log in to continue</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+      />
+      <Button
+        style={styles.input}
+        title="Generate Password"
+        onPress={() => props.setUserLoggedIn(true)} //change this line to send the OTP based on the phone number
+      ></Button>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="One-Time Password"
+        keyboardType="numeric"
+      />
+      <Button
+        style={styles.input}
+        title="Log In"
+        onPress={() => props.setUserLoggedIn(true)}
+      ></Button>
     </View>
   );
 }
-*/
-
-export default function Login(props){
-    return(
-        <View style={styles.login}>
-            <Text>This is the Login Screen</Text>
-            <Button title="Log In" onPress={()=>props.setUserLoggedIn(true)}></Button>
-        </View>
-
-    );
-}
 
 const styles = StyleSheet.create({
-    login: {
-        flexDirection: 'row',
-        width: '100%',
-        justifyContent: 'space-between',
-        backgroundColor: 'orange',
-        height: '12%',
-        alignItems: 'flex-end',
-        paddingBottom: 5,
-        paddingLeft: 10,
-        paddingRight: 10,
-        
-      },
-})
+  login: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
+    backgroundColor: "green",
+    height: "18%",
+    alignItems: "flex-end",
+    paddingTop: 50,
+    paddingLeft: 95,
+    paddingRight: 10,
+    fontSize: 30,
+  },
+  input: {
+    //flexDirection: "column",
+    backgroundColor: "red",
+    height: "15%",
+    fontSize: 23,
+  },
+});
