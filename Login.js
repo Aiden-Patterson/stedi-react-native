@@ -1,36 +1,52 @@
-import React from "react";
+import React, {useState} from "react";
 import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 import { View, Text, Button } from "react-native";
 
+//const [phoneNumber, setPhoneNumber] = useState("");
+//const [oneTimePassword, setOneTimePassword] = useState("");
 
 
 export default function Login(props) {
-  const [text, onChangeText] = React.useState("Phone Number");
-  const [number, onChangeNumber] = React.useState(null);
+const [phoneNumber, setPhoneNumber] = useState(phoneNumber);
+const [oneTimePassword, setOneTimePassword] = useState("");
+const [password, setPassword] = useState("");
   return (
     <View>
       <Text style={styles.login}>Log in to continue</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
+        onChangeText={setPhoneNumber}
+        value={phoneNumber}
+        placeholder="Phone Number"
+        //keyboardType="numeric"
       />
       <Button
         style={styles.input}
         title="Generate Password"
-        onPress={() => props.setUserLoggedIn(true)} //change this line to send the OTP based on the phone number
+        onPress={() => {
+          fetch("https://dev.stedi.me/oneTimePassword/"+phoneNumber,{
+            type: "POST",
+            headers:{
+              Accept:"application/text",
+              "Content-Type":"application/text"
+            }
+            
+          });
+        }} 
       ></Button>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
+        onChangeText={setOneTimePassword}
+        value={oneTimePassword}
         placeholder="One-Time Password"
         keyboardType="numeric"
       />
       <Button
         style={styles.input}
         title="Log In"
-        onPress={() => props.setUserLoggedIn(true)}
+        onPress={() => {
+          props.setUserLoggedIn(true)}
+      }
       ></Button>
     </View>
   );
@@ -51,7 +67,6 @@ const styles = StyleSheet.create({
   },
   input: {
     //flexDirection: "column",
-    backgroundColor: "red",
     height: "15%",
     fontSize: 23,
   },

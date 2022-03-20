@@ -25,15 +25,15 @@ export default function App() {
           barStyle={{ backgroundColor: "green" }}
         >
           <Tab.Screen
-            name="Home"
-            component={Home}
-            options={{
-              tabBarLabel: "Home",
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="home" color={color} size={26} />
-              ),
-            }}
-          />
+          name='Home'
+          children={()=><Home setUserEmail={setUserEmail} />}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name='home' color={color} size={26} />
+            ),
+          }}
+        />
           <Tab.Screen
             name="Step Counter"
             component={Counter}
