@@ -44,7 +44,17 @@ export default function Login(props) {
         style={styles.input}
         title="Log In"
         onPress={() => {
-          if (oneTimePassword == password && password > 0) props.setUserLoggedIn(true);
+          fetch("https://dev.stedi.me/twofactorlogin/", {
+            method: "POST",
+          body:JSON.stringify(
+            {
+              phoneNumber:phoneNumber,
+              password:oneTimePassword
+            }),
+            
+          });
+          //const token = Response.JSON();
+            setUserLoggedIn(true);
         }}
       ></Button>
     </View>
